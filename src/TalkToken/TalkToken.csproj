@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12</LangVersion>
+    <RootNamespace>TalkToken</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>TalkToken</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>TalkToken contributors</Authors>
+    <License>MIT</License>
+    <Description>Fluent persona and system-prompt builder for AI models: describe how your AI should talk, render the system prompt, export OpenAI/Anthropic/Gemini payloads, persist to JSON, and estimate token budgets.</Description>
+    <PackageTags>ai;llm;prompt;persona;system-prompt;openai;anthropic;gemini;tokens</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+</Project>

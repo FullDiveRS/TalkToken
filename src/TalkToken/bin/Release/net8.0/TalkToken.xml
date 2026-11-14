@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TalkToken</name>
+    </assembly>
+    <members>
+        <member name="T:TalkToken.AiPersona">
+            <summary>
+            Fluent builder for <see cref="T:TalkToken.BuiltPersona"/>. Start with <see cref="M:TalkToken.AiPersona.Create(System.String)"/>, chain the
+            <c>With*</c> / <c>Add*</c> methods, then call <see cref="M:TalkToken.AiPersona.Build"/>.
+            </summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.Create(System.String)">
+            <summary>Starts building a persona. The name is required and becomes the prompt's top-level heading.</summary>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="name"/> is null, empty or whitespace.</exception>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithDescription(System.String)">
+            <summary>Short summary of who the persona is, shown right under the name heading.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithRole(System.String)">
+            <summary>The job or role the AI plays (rendered under "## Role").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithBackground(System.String)">
+            <summary>Backstory the AI can draw on (rendered under "## Background").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithTone(System.String)">
+            <summary>How the AI should sound, e.g. a <see cref="T:TalkToken.TonePresets"/> value (rendered under "## Persona &amp; Tone").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithStyle(System.String)">
+            <summary>Writing style details such as sentence length and word choice.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithQuirk(System.String)">
+            <summary>A signature speech habit, e.g. for game NPCs.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithVerbosity(TalkToken.Verbosity)">
+            <summary>Answer length guidance. <see cref="F:TalkToken.Verbosity.Balanced"/> emits nothing.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithLanguage(System.String)">
+            <summary>Language the AI must answer in (rendered under "## Language").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithRules(System.String[])">
+            <summary>Behavioral rules, rendered as a numbered list under "## Rules". Blank entries are ignored.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.AddRule(System.String)">
+            <summary>Appends a single rule.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithProhibitions(System.String[])">
+            <summary>Things the AI must never do, rendered under "## Never Do".</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.AddProhibition(System.String)">
+            <summary>Appends a single prohibition.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithPreferredTerms(System.String[])">
+            <summary>Vocabulary the AI should prefer (rendered under "## Vocabulary").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithBannedTerms(System.String[])">
+            <summary>Vocabulary the AI should avoid (rendered under "## Vocabulary").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithKnowledge(System.String[])">
+            <summary>Facts the AI may rely on, rendered as a bullet list under "## Knowledge".</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.AddKnowledge(System.String)">
+            <summary>Appends a single knowledge fact.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithExample(System.String,System.String)">
+            <summary>Adds one few-shot dialogue example (user turn + ideal assistant turn).</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithExamples(TalkToken.DialogueExample[])">
+            <summary>Adds several few-shot dialogue examples.</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithOutputFormat(System.String)">
+            <summary>Expected shape of the AI's answers (rendered under "## Output Format").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.WithGreeting(System.String)">
+            <summary>Opening line the AI uses to start a conversation (rendered under "## Greeting").</summary>
+        </member>
+        <member name="M:TalkToken.AiPersona.Build">
+            <summary>
+            Validates and freezes the persona. All strings are trimmed; blank strings and blank
+            list entries are dropped. Throws when the name is empty.
+            </summary>
+        </member>
+        <member name="T:TalkToken.BuiltPersona">
+            <summary>
+            An immutable, ready-to-use persona definition. Create one with <see cref="T:TalkToken.AiPersona"/>,
+            render it with <see cref="M:TalkToken.BuiltPersona.RenderSystemPrompt"/>, export it to a provider request payload,
+            or persist it with <see cref="M:TalkToken.BuiltPersona.ToJson"/> / <see cref="M:TalkToken.BuiltPersona.FromJson(System.String)"/>.
+            </summary>
+        </member>
+        <member name="F:TalkToken.BuiltPersona.SchemaVersion">
+            <summary>Current persona JSON schema version.</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.RenderSystemPrompt">
+            <summary>
+            Renders the deterministic Markdown-style system prompt. Sections appear in a fixed
+            order and empty sections are omitted, so the output is byte-identical to the Python port.
+            </summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.EstimateTokens(System.Double)">
+            <summary>Estimated token count of the rendered system prompt (heuristic, ~4 chars per token).</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.FitsBudget(System.Int32,System.Double)">
+            <summary>True when the rendered system prompt fits the given token budget.</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.ToOpenAiMessages">
+            <summary>The system prompt as a single OpenAI-style chat message.</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.ToOpenAi(System.String)">
+            <summary>OpenAI chat.completions request skeleton. Pass a model name to include it.</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.ToAnthropic(System.String,System.Int32)">
+            <summary>
+            Anthropic messages request skeleton: the persona goes into "system", the conversation
+            turns belong in "messages". Pass a model name to include it.
+            </summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.ToGemini">
+            <summary>
+            Gemini generateContent request skeleton. The model name goes in the REST URL
+            (models/{model}:generateContent), not in the body.
+            </summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.ToJson">
+            <summary>Serializes the persona to versioned snake_case JSON (byte-identical to the Python port).</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.FromJson(System.String)">
+            <summary>Deserializes a persona from JSON produced by <see cref="M:TalkToken.BuiltPersona.ToJson"/> or by the Python port.</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.SaveTo(System.String)">
+            <summary>Saves the persona JSON to a file.</summary>
+        </member>
+        <member name="M:TalkToken.BuiltPersona.LoadFrom(System.String)">
+            <summary>Loads a persona from a JSON file.</summary>
+        </member>
+        <member name="T:TalkToken.DialogueExample">
+            <summary>One user/assistant turn pair used as a few-shot example inside the prompt.</summary>
+        </member>
+        <member name="M:TalkToken.DialogueExample.#ctor(System.String,System.String)">
+            <summary>One user/assistant turn pair used as a few-shot example inside the prompt.</summary>
+        </member>
+        <member name="T:TalkToken.ChatMessage">
+            <summary>A single chat message (role + content), e.g. as returned by <see cref="M:TalkToken.BuiltPersona.ToOpenAiMessages"/>.</summary>
+        </member>
+        <member name="M:TalkToken.ChatMessage.#ctor(System.String,System.String)">
+            <summary>A single chat message (role + content), e.g. as returned by <see cref="M:TalkToken.BuiltPersona.ToOpenAiMessages"/>.</summary>
+        </member>
+        <member name="T:TalkToken.PersonaJson">
+            <summary>Shared System.Text.Json options for persona JSON and provider payloads.</summary>
+        </member>
+        <member name="F:TalkToken.PersonaJson.Indented">
+            <summary>
+            Indented snake_case options for persona files. The Python port writes and reads
+            exactly the same format, so persona files are interchangeable between both runtimes.
+            </summary>
+        </member>
+        <member name="F:TalkToken.PersonaJson.Compact">
+            <summary>Compact options used for provider request payloads.</summary>
+        </member>
+        <member name="T:TalkToken.PersonaDto">
+            <summary>Serialization DTO: flat, versioned, snake_case JSON for <see cref="T:TalkToken.BuiltPersona"/>.</summary>
+        </member>
+        <member name="T:TalkToken.SamplePersonas">
+            <summary>Sample personas used in the demos, tests and documentation.</summary>
+        </member>
+        <member name="M:TalkToken.SamplePersonas.Nova">
+            <summary>
+            Nova, a friendly stargazing guide. This is the canonical cross-language sample:
+            the C# and Python demos/tests both build exactly this persona, and both must
+            render it byte-identically (enforced by the shared golden prompt file).
+            </summary>
+        </member>
+        <member name="T:TalkToken.TokenEstimator">
+            <summary>
+            Heuristic token estimator. Real tokenizers (BPE) vary per model; this uses the widely
+            used approximation of about 4 characters per token for English text. Good enough for
+            budgeting context windows - not for exact billing.
+            </summary>
+        </member>
+        <member name="M:TalkToken.TokenEstimator.Estimate(System.String,System.Double)">
+            <summary>Estimates the token count of <paramref name="text"/>. Null or empty text is 0 tokens.</summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="charsPerToken"/> is not positive.</exception>
+        </member>
+        <member name="M:TalkToken.TokenEstimator.FitsBudget(System.String,System.Int32,System.Double)">
+            <summary>Returns true when <paramref name="text"/> fits inside a budget of <paramref name="maxTokens"/> tokens.</summary>
+        </member>
+        <member name="T:TalkToken.TonePresets">
+            <summary>Ready-made tone strings for <see cref="M:TalkToken.AiPersona.WithTone(System.String)"/>.</summary>
+        </member>
+        <member name="T:TalkToken.Verbosity">
+            <summary>How long and detailed the persona's answers should be.</summary>
+        </member>
+        <member name="F:TalkToken.Verbosity.Balanced">
+            <summary>Default. No verbosity instruction is emitted into the prompt.</summary>
+        </member>
+        <member name="F:TalkToken.Verbosity.Terse">
+            <summary>Answer in as few words as possible.</summary>
+        </member>
+        <member name="F:TalkToken.Verbosity.Concise">
+            <summary>Keep answers short and to the point.</summary>
+        </member>
+        <member name="F:TalkToken.Verbosity.Elaborate">
+            <summary>Give thorough, detailed explanations with examples.</summary>
+        </member>
+        <member name="T:TalkToken.VerbosityText">
+            <summary>Maps <see cref="T:TalkToken.Verbosity"/> values to the instruction line rendered into the prompt.</summary>
+        </member>
+    </members>
+</doc>

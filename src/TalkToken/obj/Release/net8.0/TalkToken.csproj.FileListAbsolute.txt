@@ -1,0 +1,14 @@
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\bin\Release\net8.0\TalkToken.deps.json
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\bin\Release\net8.0\TalkToken.dll
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\bin\Release\net8.0\TalkToken.pdb
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\bin\Release\net8.0\TalkToken.xml
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.AssemblyInfoInputs.cache
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.AssemblyInfo.cs
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.csproj.CoreCompileInputs.cache
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.dll
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\refint\TalkToken.dll
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.xml
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.pdb
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\ref\TalkToken.dll
+C:\Users\slimb\Downloads\TalkToken-1.0.0\talktoken\csharp\src\TalkToken\obj\Release\net8.0\TalkToken.csproj.Up2Date
